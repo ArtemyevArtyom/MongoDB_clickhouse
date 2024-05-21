@@ -12,8 +12,7 @@ headers = {"User-Agent": ua.chrome}
 session = requests.session()
 
 # извлечь информацию о всех книгах на сайте во всех категориях:
-# название, цену, количество товара в наличии (In stock (19 available))
-# в формате integer, описание
+# название, цену, количество товара в наличии
 all_books = []
 # http://books.toscrape.com/catalogue/page-3.html
 url = "http://books.toscrape.com/"
@@ -22,7 +21,7 @@ end_page = True
 while end_page:
     try:
         url_new = url + url_add
-        # Запрос веб-страницы основной
+        # Запрос основной веб-страницы 
         response = session.get(url_new, headers=headers)
 
         # Парсинг HTML-содержимого веб-страницы с помощью Beautiful Soup
@@ -51,7 +50,7 @@ while end_page:
             price_info = book.find('div', {'class': 'product_price'}).findChildren()[0].getText()[1:]
             book_info['price'] = [float(price_info[1:]),
                                   price_info[0]]
-            # количество товара в наличии (In stock (19 available))
+            # количество товара в наличии 
             # в формате integer, описание
             # Запрос веб-страницы книги
             response = session.get(book_info['url'], headers=headers)
@@ -60,7 +59,7 @@ while end_page:
             book_info['avail'] = [int(re.findall('\d+', avail_info)[0]),
                                   re.sub("^\s+|\n|\r|\s+$", '', avail_info)]
 
-            # Извлечение данных построково и сохранение их в списке словарей
+            # Извлечение данных и сохранение их в списке словарей
             all_books.append(book_info)
             # и в списке URL-адресов
             # all_url.append(book_info['url'])
