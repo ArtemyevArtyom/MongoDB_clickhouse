@@ -1,9 +1,9 @@
 import requests
+import re
+import json
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
 from pprint import pprint
-import re
-import json
 
 ua = UserAgent()
 headers = {"User-Agent": ua.chrome}
