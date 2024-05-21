@@ -14,7 +14,6 @@ session = requests.session()
 # извлечь информацию о всех книгах на сайте во всех категориях:
 # название, цену, количество товара в наличии
 all_books = []
-# http://books.toscrape.com/catalogue/page-3.html
 url = "http://books.toscrape.com/"
 url_add = ""
 end_page = True
